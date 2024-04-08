@@ -4,8 +4,6 @@ import ProductPage from "../pages/Product/ProductPage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Footer, Header } from "../layouts";
 import screenUrl from "../contants/screenUrls";
-import AboutPage from "../pages/About/AboutPage";
-import OptionServicePage from "../pages/Service/option_servicePage";
 import Cart from "../components/Cart/Cart";
 import Register from "../layouts/Auth/Register/Register";
 
@@ -35,20 +33,6 @@ const publicRouters = [
     path: screenUrl.PRODUCTS,
     component: ProductPage,
     title: "Product Page",
-    isHeader: true,
-    isFooter: true,
-  },
-  {
-    path: screenUrl.ABOUT,
-    component: AboutPage,
-    title: "About Page",
-    isHeader: true,
-    isFooter: true,
-  },
-  {
-    path: screenUrl.SERVICE,
-    component: OptionServicePage,
-    title: "Service Page",
     isHeader: true,
     isFooter: true,
   },
