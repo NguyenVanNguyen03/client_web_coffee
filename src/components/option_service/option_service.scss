@@ -1,0 +1,13 @@
+.container-option_service {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+  .option_service {
+    text-align: center;
+    h2 {
+      margin: 10px 0;
+      margin-top: 20px;
+    }
+  }
+}

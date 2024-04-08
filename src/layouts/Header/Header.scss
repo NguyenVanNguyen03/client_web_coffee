@@ -1,0 +1,85 @@
+.navbar {
+  position: fixed;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 120px;
+  border-bottom: 1px solid black;
+  height: var(--header-height);
+  background: url(../../assets/images/bgr_cf_aboutt.png);
+  z-index: 999;
+
+  .coffee-logo {
+    cursor: pointer;
+  }
+
+  ul {
+    flex: 1;
+    list-style: none;
+    text-align: center;
+    list-style-type: none;
+  }
+
+  li {
+    display: inline-block;
+    margin: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+  }
+
+  li a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  li:hover {
+    color: orange;
+  }
+
+  .search-box {
+    position: relative;
+    margin-right: 40px;
+  }
+
+  .icon-search {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 10px;
+  }
+
+  input[type="text"] {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 30px;
+    border-radius: 50px;
+    border: none;
+  }
+
+  .body-cart {
+    position: relative;
+    display: inline-block;
+
+    .btn-cart {
+      svg {
+        cursor: pointer;
+      }
+    }
+
+
+    .Qty-Product {
+      position: absolute;
+      top: -8px; // Điều chỉnh top để đưa số lượng lên trên
+      right: -8px; // Điều chỉnh right để đưa số lượng sang phải
+      background-color: red; // Đặt màu đỏ cho hình tròn
+      color: white; // Đặt màu chữ trắng
+      border-radius: 50%; // Đặt hình tròn
+      width: 18px;
+      height: 18px;
+      font-size: 14px; // Đặt kích thước chữ
+      text-align: center;
+    }
+  }
+
+}

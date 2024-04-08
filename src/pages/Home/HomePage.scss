@@ -1,0 +1,125 @@
+.container-homepage {
+  width: 100%;
+  display: flex;
+  align-items: center; /* Căn giữa theo chiều dọc */
+  justify-content: center; /* Căn giữa theo chiều ngang */
+  height: 90vh;
+  animation: moveInTop ease-in-out 1s;
+}
+
+.container-header {
+  background: url(../../assets/images/bgr_cf_aboutt.png);
+}
+.content-homepage {
+  display: block;
+  width: 50%;
+  padding: 45px 100px 45px 150px;
+
+  h1,
+  h2 {
+    font-size: 50px;
+    display: inline;
+  }
+  h2 {
+    color: orange;
+  }
+  p {
+    font-size: 20px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    padding: 0 150px 0 0px;
+  }
+  button {
+    font-size: 16px;
+  }
+  .button1 {
+    margin-right: 1rem;
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #2f2105;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    display: inline;
+    align-items: center;
+    &:hover {
+      background-color: #534831;
+      transition: background-color 0.3s ease;
+    }
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+  .button2 {
+    border: none;
+    background: fixed;
+    color: orange;
+    margin-left: 40px;
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 25px;
+    transition: background-color 0.3s ease;
+    &:hover {
+      background-color: #ff8000;
+      color: #fff;
+    }
+  }
+  .icon-cart {
+    background-color: orange;
+    width: 15px; /* Adjust the size of the circle as needed */
+    height: 15px; /* Adjust the size of the circle as needed */
+    border-radius: 50%;
+    display: inline;
+    justify-content: center;
+    align-items: center;
+    margin-left: 0.5rem; /* Spacing between icon and text */
+  }
+}
+.img-homepage {
+  background-image: url(../../assets/images/bgr_cofe1.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  padding: 45px 0;
+  width: 50%;
+}
+
+.img-homepage img {
+  display: flex;
+  width: 55%;
+  height: auto;
+}
+
+.Container-Popular {
+  h1 {
+    padding-left: 100px;
+    padding-bottom: 40px;
+  }
+  .container-card {
+    background-image: url(../../assets/images/bgr_card.png);
+    background-repeat: no-repeat;
+    background-size: 80%;
+    background-position: bottom;
+    height: 400px;
+    width: auto;
+  }
+}
+
+@keyframes moveInTop {
+  0% {
+    opacity: 0;
+    transform: translateY(-50%);
+  }
+
+  80% {
+    transform: translateY(10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}

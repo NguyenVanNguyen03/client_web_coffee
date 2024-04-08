@@ -1,0 +1,21 @@
+.container-ServicePage {
+  width: 100%;
+  padding-top: var(--header-height);
+  animation: growth ease 1s;
+  h1 {
+    padding-left: 100px;
+    padding-bottom: 40px;
+  }
+}
+
+@keyframes growth {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

@@ -1,0 +1,56 @@
+.container_slideAboutPage {
+  width: auto;
+  height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url(../../assets/images/bgr_cf_aboutt.png);
+  background-repeat: no-repeat;
+  background-size: 60% 100%;
+  background-position: left;
+  margin: 100px 0;
+  animation: moveInBottom ease 1s;
+  .content {
+    width: 40%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .text-container {
+    padding: 0 20%;
+    p {
+      margin-top: 20px;
+      padding-right: 100px;
+    }
+  }
+
+  .slide {
+    width: 60%;
+    height: 100%;
+    display: flex;
+    // align-items: center;
+    justify-content: center;
+    .option_service {
+      padding: 0 15px;
+    }
+  }
+}
+
+
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(50%);
+  }
+
+  80% {
+    transform: translateY(10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
