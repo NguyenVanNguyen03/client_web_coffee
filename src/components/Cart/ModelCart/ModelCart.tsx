@@ -24,7 +24,7 @@ function ModelCart() {
                     <tbody>
                         {cartItems.map(item => {
                             return (
-                                <BodyModelCart key={item._id} {...item} />
+                                <BodyModelCart key={item.id} {...item} />
                             )
                         })}
                     </tbody>
