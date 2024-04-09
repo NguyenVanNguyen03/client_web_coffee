@@ -5,28 +5,28 @@ type ShoppingContextProviderProps = {
 }
 
 type CartItem = {
-    _id: number
+    id: number
     name: string
     price: number
     qty: number
-    img: string
+    thumbnail: string
 }
 
 type ProductItem = {
-    _id: number
+    id: number
     name: string
     price: number
-    img: string
+    thumbnail: string
 }
 
 interface ShoppingContextType {
     cartQty: number
     totalPrice: number
     cartItems: CartItem[]
-    increaseQty: (_id: number) => void
-    decreaseQty: (_id: number) => void
+    increaseQty: (id: number) => void
+    decreaseQty: (id: number) => void
     addCartItem: (item: ProductItem) => void
-    removeCartItem: (_id: number) => void
+    removeCartItem: (id: number) => void
     clearCart: () => void
 }
 
@@ -50,12 +50,12 @@ export const ShoppingContextProvider = ({ children }: ShoppingContextProviderPro
 
     const totalPrice = cartItems.reduce((total, item) => total + item.qty * item.price, 0)
 
-    const increaseQty = (_id: number) => {
+    const increaseQty = (id: number) => {
 
-        const currentCartItem = cartItems.find(item => item._id === _id)
+        const currentCartItem = cartItems.find(item => item.id === id)
         if (currentCartItem) {
             const newItems = cartItems.map(item => {
-                if (item._id === _id) {
+                if (item.id === id) {
                     return { ...item, qty: item.qty + 1 }
                 } else {
                     return item
@@ -65,15 +65,15 @@ export const ShoppingContextProvider = ({ children }: ShoppingContextProviderPro
         }
     }
 
-    const decreaseQty = (_id: number) => {
+    const decreaseQty = (id: number) => {
 
-        const currentCartItem = cartItems.find(item => item._id === _id)
+        const currentCartItem = cartItems.find(item => item.id === id)
         if (currentCartItem) {
             if (currentCartItem.qty == 1) {
-                removeCartItem(_id)
+                removeCartItem(id)
             } else {
                 const newItems = cartItems.map(item => {
-                    if (item._id === _id) {
+                    if (item.id === id) {
                         return { ...item, qty: item.qty - 1 }
                     } else {
                         return item
@@ -88,10 +88,10 @@ export const ShoppingContextProvider = ({ children }: ShoppingContextProviderPro
     const addCartItem = (product: ProductItem) => {
 
         if (product) {
-            const currentCartItem = cartItems.find(item => item._id === product._id)
+            const currentCartItem = cartItems.find(item => item.id === product.id)
             if (currentCartItem) {
                 const newItems = cartItems.map(item => {
-                    if (item._id === product._id) {
+                    if (item.id === product.id) {
                         return { ...item, qty: item.qty + 1 }
                     } else {
                         return item
@@ -105,9 +105,9 @@ export const ShoppingContextProvider = ({ children }: ShoppingContextProviderPro
         }
     }
 
-    const removeCartItem = (_id: number) => {
+    const removeCartItem = (id: number) => {
 
-        const currentCartItemIndex = cartItems.findIndex(item => item._id === _id)
+        const currentCartItemIndex = cartItems.findIndex(item => item.id === id)
         const newItems = [...cartItems]
         newItems.splice(currentCartItemIndex, 1)
         setCartItems(newItems)

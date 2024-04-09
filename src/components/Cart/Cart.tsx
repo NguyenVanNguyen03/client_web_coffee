@@ -29,18 +29,18 @@ const Cart = () => {
                         <tbody>
                             {cartItems.map(item => {
                                 return (
-                                    <tr key={item._id}>
-                                        <td><img src={item.img} className='img-fluid' alt={item.name} /></td>
+                                    <tr key={item.id}>
+                                        <td><img src={item.thumbnail} className='img-fluid' alt={item.name} /></td>
                                         <td>{item.name}</td>
                                         <td>{formatCurrency(item.price)}</td>
                                         <td>
-                                            <button type="button" className="btn " onClick={() => decreaseQty(item._id)}><strong>-</strong></button>
+                                            <button type="button" className="btn " onClick={() => decreaseQty(item.id)}><strong>-</strong></button>
                                             {item.qty}
-                                            <button type="button" className="btn " onClick={() => increaseQty(item._id)}><strong>+</strong></button>
+                                            <button type="button" className="btn " onClick={() => increaseQty(item.id)}><strong>+</strong></button>
                                         </td>
                                         <td>{formatCurrency(item.price * item.qty)}</td>
                                         <td>
-                                            <button className="btn delete" onClick={() => removeCartItem(item._id)}>
+                                            <button className="btn delete" onClick={() => removeCartItem(item.id)}>
                                                 Delete
                                             </button>
                                         </td>

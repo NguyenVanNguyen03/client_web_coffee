@@ -14,10 +14,10 @@ const CoffeeCard = () => {
   return (
     <div className="cards-container">
       {Data_Card.map((item) => (
-        <div className="card" key={item._id}>
+        <div className="card" key={item.id}>
           <div className="card-header">
             <img
-              src={item.img}
+              src={item.thumbnail}
               alt="Coffee"
               className="coffee-image"
             />
