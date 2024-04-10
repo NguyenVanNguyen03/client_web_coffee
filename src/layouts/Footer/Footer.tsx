@@ -1,11 +1,12 @@
-import backgroundImage from "../../assets/images/bgr_cf.png"; // Import ảnh nền
+
+import { Link } from "react-router-dom";
 import "./Footer.scss";
 
 const Footer = () => {
   return (
     <div
       className="app-container"
-      style={{ backgroundImage: `url(${backgroundImage})` }}
+
     >
       <div className="email-input-container">
         <h1 className="content">Subscribe to get 50% discount price</h1>
@@ -14,7 +15,9 @@ const Footer = () => {
           placeholder="Enter your email"
           className="email-input"
         />
-        <button className="subscribe-button">Order now</button>
+        <Link to={"/products"}>
+          <button className="subscribe-button">Order now</button>
+        </Link>
       </div>
     </div>
   );

@@ -8,6 +8,7 @@ type CartItem = {
     id: number
     name: string
     price: number
+    discount: number
     qty: number
     thumbnail: string
 }
@@ -16,6 +17,7 @@ type ProductItem = {
     id: number
     name: string
     price: number
+    discount: number
     thumbnail: string
 }
 
@@ -48,7 +50,11 @@ export const ShoppingContextProvider = ({ children }: ShoppingContextProviderPro
 
     const cartQty = cartItems.reduce((qty, item) => qty + item.qty, 0)
 
-    const totalPrice = cartItems.reduce((total, item) => total + item.qty * item.price, 0)
+    const totalPrice = cartItems.reduce((total, item) => {
+        const itemTotalPrice = item.qty * item.price;
+        const discountedPrice = itemTotalPrice * (item.discount / 100);
+        return total + itemTotalPrice - discountedPrice;
+    }, 0);
 
     const increaseQty = (id: number) => {
 

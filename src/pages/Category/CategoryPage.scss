@@ -1,0 +1,26 @@
+.container-category {
+  width: auto;
+  padding-top: var(--header-height);
+  animation: moveInRight ease 1.8s;
+
+  h1 {
+    padding-left: 100px;
+    padding-bottom: 40px;
+  }
+}
+
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(50%);
+  }
+
+  80% {
+    transform: translateX(10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}

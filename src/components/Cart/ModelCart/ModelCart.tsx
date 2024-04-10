@@ -3,6 +3,7 @@ import "./ModelCart.scss";
 
 import BodyModelCart from "./BodyModelCart";
 import { useShoppingContext } from "../../../contexts/ShoppingContext";
+import { formatCurrency } from "../../../utils/common";
 
 function ModelCart() {
     const { cartItems, totalPrice } = useShoppingContext();
@@ -14,11 +15,13 @@ function ModelCart() {
                 <table>
                     <thead>
                         <tr>
-                            <th style={{ width: "20%" }}>Images</th>
-                            <th style={{ width: "22%" }}>Name Product</th>
-                            <th style={{ width: "28%" }}>Quantity</th>
-                            <th style={{ width: "15%" }}>Price</th>
-                            <th style={{ width: "10%" }}>Other</th>
+                            <th >Images</th>
+                            <th >Name Product</th>
+                            <th >Price</th>
+                            <th >Quantity</th>
+                            <th className="th-sale" >Sale</th>
+                            <th >Total</th>
+                            <th >Other</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -31,7 +34,8 @@ function ModelCart() {
                 </table>
 
                 <div className="footer-cart">
-                    <h4>Total: {totalPrice}</h4>
+                    <h4>Total: {formatCurrency(totalPrice)}</h4>
+
                     <Link to="/cart" className="checkout">Checkout</Link>
                 </div>
             </div>

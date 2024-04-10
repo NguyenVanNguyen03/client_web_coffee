@@ -8,14 +8,17 @@
   margin: 50px auto; // Đảm bảo container được căn giữa trên trình duyệt
   position: relative; // Để định vị tương đối cho email-input-container
   border-radius: 10px;
+  object-fit: cover;
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMW2kv4Hj6_irfYMYvt2l-iSiqYxxJ9i4ajTRCDELbMg&s");
 }
 
 .email-input-container {
   .content {
     position: absolute;
     top: 100px; // Khoảng cách từ trên xuống
-    color: #fff;
+    color: #ffff;
   }
+
   position: relative; // Định vị tuyệt đối cho nút button
   width: 40%;
   display: flex;

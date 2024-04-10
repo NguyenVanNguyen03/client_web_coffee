@@ -6,6 +6,8 @@ import { Footer, Header } from "../layouts";
 import screenUrl from "../contants/screenUrls";
 import Cart from "../components/Cart/Cart";
 import Register from "../layouts/Auth/Register/Register";
+import CategoryPage from "../pages/Category/CategoryPage";
+
 
 interface PageWrapperProps {
   title: string;
@@ -26,6 +28,13 @@ const publicRouters = [
     path: screenUrl.HOME,
     component: HomePage,
     title: "Home Page",
+    isHeader: true,
+    isFooter: true,
+  },
+  {
+    path: screenUrl.CATEGORY,
+    component: CategoryPage,
+    title: "Category Page",
     isHeader: true,
     isFooter: true,
   },
@@ -66,8 +75,21 @@ function WrapperComponent({
 }
 
 function NotFound() {
-  return <div>Not Found 404</div>;
+  return (
+    <div style={{
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: '100vh',
+      fontSize: '40px',
+      backgroundColor: 'lightgray',
+
+    }}>
+      Updating...
+    </div>
+  );
 }
+
 
 function AppRouter() {
   return (

@@ -1,0 +1,49 @@
+.cardsCategory-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.card-category {
+    width: auto;
+    /* Adjust as needed */
+    margin-bottom: 10px;
+    /* Reduced margin */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 10px 20px;
+}
+
+.img-category img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+
+}
+
+.name-category {
+    padding: 5px;
+    /* Reduced padding */
+    background-color: #f5f5f5;
+    text-align: center;
+}
+
+
+.more-button {
+    display: block;
+    width: 20%;
+    margin: 20px auto;
+    /* Đặt nút ở giữa */
+    padding: 10px 0;
+    background-color: #ff8000;
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background-color: #ffb546;
+    }
+}

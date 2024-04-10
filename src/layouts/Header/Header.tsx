@@ -1,5 +1,5 @@
 import "./Header.scss";
-import logo from "../logo_coffee.svg";
+import logo from "../../assets/images/logo.svg";
 import { CiSearch } from "react-icons/ci";
 import { FaCartPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
@@ -24,7 +24,7 @@ function Header() {
 
       <ul>
         <li>
-          <Link to="/about">About us</Link>
+          <Link to="/category">Category</Link>
         </li>
         <li>
           <Link to="/products">Our Product</Link>
@@ -36,7 +36,7 @@ function Header() {
 
       <div className="search-box">
         <CiSearch className="icon-search" />
-        <input type="text" placeholder="Cappuccino" />
+        <input type="text" placeholder="Quần dài..." />
       </div>
 
       <div className="body-cart">

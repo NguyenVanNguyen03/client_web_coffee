@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import "./ProductCard.scss";
-import { FaShoppingCart, FaStar } from "react-icons/fa";
+import { FaShoppingCart } from "react-icons/fa";
 import axios from "axios";
 
 import { formatCurrency } from "../../utils/common";
@@ -34,10 +34,11 @@ const ProductCard = () => {
         const accessToken = resToken.data.access;
 
         const response = await axios.get('https://ecommerce-python.vercel.app/api/v1/product/', {
-          headers: { Authorization: `Bearer ${accessToken}` }, 
+          headers: { Authorization: `Bearer ${accessToken}` },
         });
 
         setProducts(response.data.data);
+        console.log(response.data.data)
         setDisplayedProducts(response.data.data.slice(0, visibleProductCount));
       } catch (error) {
         console.log(error);
@@ -58,8 +59,7 @@ const ProductCard = () => {
           <div className="card-header">
             <img src={item.thumbnail} alt="ảnh coffee" className="coffee-image" />
             <div className="rating">
-              <span className="rating-value">{item.discount}%</span>
-              <FaStar className="star" />
+              <span className="rating-value">- {item.discount}%</span>
             </div>
           </div>
           <div className="card-body">
@@ -68,8 +68,8 @@ const ProductCard = () => {
               <p className="coffee-price">{formatCurrency(item.price)}</p>
             </div>
             <div className="content-and-button">
-          
-              <p>Amount:{item.amount}</p>
+
+              <p>Amount: {item.amount}</p>
               <div className="button-group-product">
                 <button className="cart-button" onClick={() => addCartItem(item)}>
                   <FaShoppingCart />

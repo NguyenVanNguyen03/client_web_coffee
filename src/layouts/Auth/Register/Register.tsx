@@ -9,26 +9,31 @@ function Register() {
 
     const handleEmail = (e: { target: { value: SetStateAction<string>; }; }) => {
         setEmail(e.target.value);
-
     }
+
     const handleName = (e: { target: { value: SetStateAction<string>; }; }) => {
         setName(e.target.value);
-
     }
+
     const handlePassword = (e: { target: { value: SetStateAction<string>; }; }) => {
         setPassword(e.target.value);
-
     }
 
-    const handleSumit = async (e: { preventDefault: () => void; }) => {
-        console.log(email, name)
+    const handleSubmit = async (e: { preventDefault: () => void; }) => {
         e.preventDefault();
+        console.log(email, name);
 
         try {
-            const response = await axios.post('http://localhost:3000/api/users', {
+            const userData = JSON.stringify({
                 email: email,
                 username: name,
                 password: password
+            });
+
+            const response = await axios.post('https://ecommerce-python.vercel.app/api/v1/users/', userData, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
             });
             console.log(response.data);
         } catch (error) {
@@ -36,25 +41,23 @@ function Register() {
         }
     }
 
-
-
     return (
         <div>
-            <form action="" method="POST">
+            <form onSubmit={handleSubmit}>
                 <h1>Register</h1>
                 <div className="user-email">
-                    <label htmlFor="">Email</label>
-                    <input type="email" onChange={handleEmail} value={email} />
+                    <label htmlFor="email">Email</label>
+                    <input type="email" id="email" onChange={handleEmail} value={email} />
                 </div>
                 <div className="user-name">
-                    <label htmlFor="">User Name</label>
-                    <input type="text" onChange={handleName} value={name} />
+                    <label htmlFor="name">User Name</label>
+                    <input type="text" id="name" onChange={handleName} value={name} />
                 </div>
                 <div className="user-password">
-                    <label htmlFor="">Password Name</label>
-                    <input type="text" onChange={handlePassword} value={password} />
+                    <label htmlFor="password">Password</label>
+                    <input type="password" id="password" onChange={handlePassword} value={password} />
                 </div>
-                <button className="btn-resgister" type="submit" onClick={handleSumit}>Submit</button>
+                <button className="btn-register" type="submit">Submit</button>
             </form>
         </div>
     )
