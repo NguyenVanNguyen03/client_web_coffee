@@ -8,7 +8,11 @@ import { ShoppingContextProvider } from './contexts/ShoppingContext.tsx'
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <ShoppingContextProvider>
     <React.StrictMode>
+
       <App />
+
     </React.StrictMode>
   </ShoppingContextProvider>
 )
+
+

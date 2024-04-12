@@ -10,6 +10,7 @@ type Product = {
 }
 
 const CategoryCard = () => {
+    const [loading, setLoading] = useState<boolean>(true); // State để đánh dấu trạng thái tải dữ liệu
     const [products, setProducts] = useState<Product[]>([]);
     const [displayedProducts, setDisplayedProducts] = useState<Product[]>([]);
     const [visibleProductCount, setVisibleProductCount] = useState<number>(6);
@@ -32,6 +33,8 @@ const CategoryCard = () => {
                 setDisplayedProducts(response.data.data.slice(0, visibleProductCount));
             } catch (error) {
                 console.log(error);
+            } finally {
+                setLoading(false); // Kết thúc tải dữ liệu
             }
         };
 
@@ -44,15 +47,20 @@ const CategoryCard = () => {
 
     return (
         <div className="cardsCategory-container">
-            {displayedProducts.map((item) => (
-                <div className="card-category" key={item.id}>
-                    <div className="img-category">
-                        <img src={item.icon_url} alt="" />
+            {loading ? ( // Hiển thị phần tử loading nếu đang tải dữ liệu
+                <div className="loading-spinner">Loading...</div>
+            ) : (
+
+                displayedProducts.map((item) => (
+                    <div className="card-category" key={item.id}>
+                        <div className="img-category">
+                            <img src={item.icon_url} alt="" />
+                        </div>
+                        <div className="name-category">{item.name}</div>
                     </div>
-                    <div className="name-category">{item.name}</div>
-                </div>
-            ))}
-            {products.length > displayedProducts.length && (
+                ))
+            )}
+            {!loading && products.length > displayedProducts.length && (
                 <button className="more-button" onClick={handleShowMore}>
                     More
                 </button>

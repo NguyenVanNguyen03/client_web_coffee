@@ -125,3 +125,41 @@
     background-color: #ffb546;
   }
 }
+
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  /* Điều chỉnh chiều cao cho phù hợp với nội dung */
+  font-size: 1.5rem;
+  color: #333;
+  /* Màu chữ */
+}
+
+/* Hiệu ứng quay */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-spinner::after {
+  content: '';
+  display: inline-block;
+  width: 40px;
+  /* Đường kính vòng quay */
+  height: 40px;
+  /* Đường kính vòng quay */
+  border: 4px solid #ccc;
+  /* Độ dày và màu sắc của vòng quay */
+  border-top: 4px solid #666;
+  /* Màu của đoạn trên cùng của vòng quay */
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  /* Thời gian và kiểu của hiệu ứng quay */
+}

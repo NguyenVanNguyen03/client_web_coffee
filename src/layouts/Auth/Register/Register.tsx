@@ -1,28 +1,26 @@
 import axios from "axios";
-import { SetStateAction, useState } from "react";
+import { useState } from "react";
 
 function Register() {
-
     const [email, setEmail] = useState("");
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState<string | null>(null); // Sử dụng state thực sự cho lỗi
 
-    const handleEmail = (e: { target: { value: SetStateAction<string>; }; }) => {
+    const handleEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
         setEmail(e.target.value);
     }
 
-    const handleName = (e: { target: { value: SetStateAction<string>; }; }) => {
+    const handleName = (e: React.ChangeEvent<HTMLInputElement>) => {
         setName(e.target.value);
     }
 
-    const handlePassword = (e: { target: { value: SetStateAction<string>; }; }) => {
+    const handlePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
         setPassword(e.target.value);
     }
 
-    const handleSubmit = async (e: { preventDefault: () => void; }) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log(email, name);
-
         try {
             const userData = JSON.stringify({
                 email: email,
@@ -35,9 +33,21 @@ function Register() {
                     'Content-Type': 'application/json'
                 }
             });
-            console.log(response.data);
+            console.log('Registration successful:', response.data);
+            window.location.href = "/";
         } catch (error) {
-            console.error('Error submitting registration:', error);
+            if (axios.isAxiosError(error)) {
+                const responseData = error.response?.data;
+                if (responseData?.non_field_errors && responseData.non_field_errors.length > 0) {
+                    setError(responseData.non_field_errors.join('. '));
+                } else {
+                    setError('This password is too short. It must contain at least 8 characters or this password is too common or this password is entirely numeric.');
+
+                }
+            } else {
+                setError('An unexpected error occurred. Please try again later.');
+                console.error('An unexpected error occurred:', error);
+            }
         }
     }
 
@@ -59,6 +69,7 @@ function Register() {
                 </div>
                 <button className="btn-register" type="submit">Submit</button>
             </form>
+            {error && <p>{error}</p>} {/* Hiển thị lỗi nếu có */}
         </div>
     )
 }

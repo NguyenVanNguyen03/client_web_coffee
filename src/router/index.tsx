@@ -5,8 +5,10 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Footer, Header } from "../layouts";
 import screenUrl from "../contants/screenUrls";
 import Cart from "../components/Cart/Cart";
-import Register from "../layouts/Auth/Register/Register";
 import CategoryPage from "../pages/Category/CategoryPage";
+import Login from "../layouts/Auth/Login/Login";
+import Register from "../layouts/Auth/Register/Register";
+import Admin from "../components/Admin/Admin";
 
 
 interface PageWrapperProps {
@@ -21,6 +23,13 @@ const publicRouters = [
     path: screenUrl.RESGISTER,
     component: Register,
     title: "Register Page",
+    isHeader: false,
+    isFooter: false,
+  },
+  {
+    path: screenUrl.LOGIN,
+    component: Login,
+    title: "Login Page",
     isHeader: false,
     isFooter: false,
   },
@@ -49,6 +58,13 @@ const publicRouters = [
     path: screenUrl.CART,
     component: Cart,
     title: "Cart Page",
+    isHeader: false,
+    isFooter: false,
+  },
+  {
+    path: screenUrl.ADMIN,
+    component: Admin,
+    title: "Admin Page",
     isHeader: false,
     isFooter: false,
   },
@@ -82,7 +98,7 @@ function NotFound() {
       alignItems: 'center',
       height: '100vh',
       fontSize: '40px',
-      backgroundColor: 'lightgray',
+      backgroundColor: 'pink',
 
     }}>
       Updating...

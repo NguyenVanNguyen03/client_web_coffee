@@ -133,3 +133,4 @@ export const ShoppingContextProvider = ({ children }: ShoppingContextProviderPro
 }
 
 export default ShoppingContext
+

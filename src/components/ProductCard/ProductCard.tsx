@@ -18,6 +18,7 @@ type Product = {
 }
 
 const ProductCard = () => {
+  const [loading, setLoading] = useState<boolean>(true); // State để đánh dấu trạng thái tải dữ liệu
   const [products, setProducts] = useState<Product[]>([]);
   const [displayedProducts, setDisplayedProducts] = useState<Product[]>([]);
   const [visibleProductCount, setVisibleProductCount] = useState<number>(6);
@@ -26,6 +27,7 @@ const ProductCard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setLoading(true); // Bắt đầu tải dữ liệu
         const resToken = await axios.post('https://ecommerce-python.vercel.app/api/v1/jwt/create/', {
           username: 'Admin',
           password: '123456',
@@ -42,6 +44,8 @@ const ProductCard = () => {
         setDisplayedProducts(response.data.data.slice(0, visibleProductCount));
       } catch (error) {
         console.log(error);
+      } finally {
+        setLoading(false); // Kết thúc tải dữ liệu
       }
     };
 
@@ -50,36 +54,41 @@ const ProductCard = () => {
 
   const handleShowMore = () => {
     setVisibleProductCount(visibleProductCount + 6);
+
   };
 
   return (
     <div className="cardsProduct-container">
-      {displayedProducts.map((item) => (
-        <div className="card" key={item.id}>
-          <div className="card-header">
-            <img src={item.thumbnail} alt="ảnh coffee" className="coffee-image" />
-            <div className="rating">
-              <span className="rating-value">- {item.discount}%</span>
+      {loading ? ( // Hiển thị phần tử loading nếu đang tải dữ liệu
+        <div className="loading-spinner">Loading...</div>
+      ) : (
+        displayedProducts.map((item) => (
+          <div className="card" key={item.id}>
+            <div className="card-header">
+              <img src={item.thumbnail} alt="ảnh coffee" className="coffee-image" />
+              <div className="rating">
+                <span className="rating-value">- {item.discount}%</span>
+              </div>
             </div>
-          </div>
-          <div className="card-body">
-            <div className="coffee-info">
-              <h3 className="coffee-name">{item.name}</h3>
-              <p className="coffee-price">{formatCurrency(item.price)}</p>
-            </div>
-            <div className="content-and-button">
+            <div className="card-body">
+              <div className="coffee-info">
+                <h3 className="coffee-name">{item.name}</h3>
+                <p className="coffee-price">{formatCurrency(item.price)}</p>
+              </div>
+              <div className="content-and-button">
 
-              <p>Amount: {item.amount}</p>
-              <div className="button-group-product">
-                <button className="cart-button" onClick={() => addCartItem(item)}>
-                  <FaShoppingCart />
-                </button>
+                <p>Amount: {item.amount}</p>
+                <div className="button-group-product">
+                  <button className="cart-button" onClick={() => addCartItem(item)}>
+                    <FaShoppingCart />
+                  </button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      ))}
-      {products.length > displayedProducts.length && (
+        ))
+      )}
+      {!loading && products.length > displayedProducts.length && (
         <button className="more-button" onClick={handleShowMore}>
           More
         </button>
@@ -89,3 +98,5 @@ const ProductCard = () => {
 };
 
 export default ProductCard;
+
+
