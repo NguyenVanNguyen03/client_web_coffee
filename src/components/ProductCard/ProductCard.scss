@@ -9,6 +9,7 @@
   border-radius: 5px;
   overflow: hidden;
   width: calc(33.33% - 150px);
+  max-width: 430px;
   margin: 0 30px 20px 30px;
   padding: 20px;
   border: none;
@@ -23,8 +24,8 @@
   width: 100%;
   height: auto;
   border-radius: 10px;
-  max-height: 200px;
-  min-height: 200px;
+  max-height: 230px;
+  min-height: 230px;
   object-fit: cover;
 }
 
@@ -109,8 +110,9 @@
 }
 
 .more-button {
-  display: block;
+  display: inline-block;
   width: 20%;
+  max-height: 50px;
   margin: 20px auto;
   /* Đặt nút ở giữa */
   padding: 10px 0;
@@ -135,6 +137,7 @@
   font-size: 1.5rem;
   color: #333;
   /* Màu chữ */
+  z-index: 99;
 }
 
 /* Hiệu ứng quay */

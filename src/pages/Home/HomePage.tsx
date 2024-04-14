@@ -15,7 +15,7 @@ function HomePage() {
         <div className="container-homepage">
           <div className="content-homepage">
             <h1>
-              Enjoy your <h2>products</h2> before your activity
+              Enjoy your <h2>products</h2> <br /> before your activity
             </h1>
             <p>
               Boost your productivity and build your mood with a glass of products

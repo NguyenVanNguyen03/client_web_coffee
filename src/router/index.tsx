@@ -64,10 +64,11 @@ const publicRouters = [
   {
     path: screenUrl.ADMIN,
     component: Admin,
-    title: "Admin Page",
+    title: "Manage Product",
     isHeader: false,
     isFooter: false,
   },
+
 ];
 
 function WrapperComponent({

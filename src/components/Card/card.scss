@@ -20,12 +20,17 @@
 
 .card-header {
   position: relative;
+
 }
 
 .coffee-image {
   width: 100%;
   height: auto;
   border-radius: 10px;
+
+  &:hover {
+    scale: 1.1;
+  }
 }
 
 .rating {

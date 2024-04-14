@@ -40,7 +40,6 @@ const ProductCard = () => {
         });
 
         setProducts(response.data.data);
-        console.log(response.data.data)
         setDisplayedProducts(response.data.data.slice(0, visibleProductCount));
       } catch (error) {
         console.log(error);

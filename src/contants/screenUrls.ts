@@ -5,6 +5,6 @@ const screenUrl = {
   CATEGORY: "/category",
   PRODUCTS: "/products",
   CART: "/cart",
-  ADMIN: "/admin",
+  ADMIN: "/addProduct",
 };
 export default screenUrl;

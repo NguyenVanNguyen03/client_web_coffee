@@ -1,23 +1,42 @@
 .cardsCategory-container {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+
+    .container-category {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        padding: 0;
+    }
+
+    .card-category {
+        width: 120px;
+        /* Adjust as needed */
+        margin-bottom: 10px;
+        /* Reduced margin */
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        overflow: hidden;
+        margin: 10px 20px;
+        cursor: pointer;
+
+    }
+
+    .container_product-category {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 30px;
+    }
+
+    h2 {
+        margin-left: 120px;
+    }
 }
 
-.card-category {
-    width: auto;
-    /* Adjust as needed */
-    margin-bottom: 10px;
-    /* Reduced margin */
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    overflow: hidden;
-    margin: 10px 20px;
-}
 
 .img-category img {
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     object-fit: cover;
 
 }
@@ -46,4 +65,16 @@
     &:hover {
         background-color: #ffb546;
     }
+}
+
+.loading-spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    /* Điều chỉnh chiều cao cho phù hợp với nội dung */
+    font-size: 1.5rem;
+    color: #333;
+    /* Màu chữ */
+    z-index: 99;
 }
