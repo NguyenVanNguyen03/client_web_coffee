@@ -78,7 +78,9 @@ function Register() {
 
                     <a href="#">Forgot password</a>
 
-                    <a href="/login">Sign-in</a>
+                    <li>
+                        <Link to="/admin">Admin</Link>
+                    </li>
                 </div>
                 <button className="btn-register" type="submit">Submit</button>
                 {error && <p className="error-message">{error}</p>}
