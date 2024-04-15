@@ -1,11 +1,11 @@
 const screenUrl = {
-  RESGISTER: "/register",
-  LOGIN: "/login",
+  RESGISTER: "/b",
+  LOGIN: "/a",
   HOME: "/",
   CATEGORY: "/category",
   PRODUCTS: "/products",
   CART: "/cart",
-  ADMIN: "/admin",
+  ADMIN: "/c",
   MANAGEPRODUCT: "/manage-product"
 };
 export default screenUrl;
