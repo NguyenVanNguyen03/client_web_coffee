@@ -329,7 +329,7 @@ function ManageProduct() {
                 <div className="add-product">
                     <div>
                         <h2 >Add Product</h2>
-                        <label htmlFor="thumbnail">Thumbnail:</label>
+                        <label htmlFor="thumbnail">Thumbnail(URL):</label>
                         <input type="text" id="thumbnail" placeholder="Thumbnail" value={newProductData.thumbnail} onChange={(e) => setNewProductData({ ...newProductData, thumbnail: e.target.value })} />
 
                         <label htmlFor="name">Name:</label>
