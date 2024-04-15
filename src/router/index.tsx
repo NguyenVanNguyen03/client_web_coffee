@@ -21,7 +21,7 @@ interface PageWrapperProps {
 
 const publicRouters = [
   {
-    path: screenUrl.RESGISTER,
+    path: screenUrl.REGISTER,
     component: Register,
     title: "Register Page",
     isHeader: false,
@@ -63,16 +63,16 @@ const publicRouters = [
     isFooter: false,
   },
   {
-    path: screenUrl.MANAGEPRODUCT,
-    component: ManageProduct,
-    title: "Manage Product",
+    path: screenUrl.ADMIN,
+    component: Admin,
+    title: "Admin",
     isHeader: false,
     isFooter: false,
   },
   {
-    path: screenUrl.ADMIN,
-    component: Admin,
-    title: "Admin",
+    path: screenUrl.MANAGEPRODUCT,
+    component: ManageProduct,
+    title: "Manage Product",
     isHeader: false,
     isFooter: false,
   },

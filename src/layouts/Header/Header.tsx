@@ -32,6 +32,9 @@ function Header() {
         <li>
           <Link to="/manage-product">Your Product</Link>
         </li>
+        <li>
+          <Link to="/login">Login</Link>
+        </li>
       </ul>
 
       <div className="search-box">
