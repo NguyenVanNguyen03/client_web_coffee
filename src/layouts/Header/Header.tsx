@@ -32,8 +32,9 @@ function Header() {
         <li>
           <Link to="/manage-product">Your Product</Link>
         </li>
+
         <li>
-          <Link to="/login">Login</Link>
+          <Link to="/admin">Admin</Link>
         </li>
       </ul>
 

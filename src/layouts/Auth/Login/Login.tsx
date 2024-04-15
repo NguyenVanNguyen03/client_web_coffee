@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import "./Login.scss";
+import { Link } from "react-router-dom";
 
 function Login() {
     const [name, setName] = useState("");
@@ -63,7 +64,9 @@ function Login() {
 
                         <input type="checkbox" />Remember password
                     </div>
-                    <a href="/register">Sign-up</a>
+                    <li>
+                        <Link className="a" to="/register">Sign-up</Link>
+                    </li>
                 </div>
                 <button className="btn-login" type="submit">Submit</button>
                 {error && <p className="error-message">{error}</p>}

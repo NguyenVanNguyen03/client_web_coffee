@@ -17,7 +17,9 @@ function ModelCart() {
                     <h1>Your Cart</h1>
                     <img src="https://img.lovepik.com/photo/40017/0891.jpg_wh860.jpg" alt="" />
                     <p>Vui lòng đăng nhập để  đặt hàng.</p>
-                    <button><a href="/login">Login</a></button>
+                    <button>
+                        <Link className="a" to={"/login"}>Login</Link>
+                    </button>
                 </div>
             </div>
         );
