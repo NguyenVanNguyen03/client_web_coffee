@@ -30,7 +30,7 @@ function Header() {
           <Link to="/products">Our Product</Link>
         </li>
         <li>
-          <Link to="/addproduct">Your Product</Link>
+          <Link to="/manage-product">Your Product</Link>
         </li>
       </ul>
 

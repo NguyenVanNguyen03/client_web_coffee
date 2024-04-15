@@ -1,15 +1,14 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import "../ManageProduct/ManageProduct.scss";
-import "./Admin.scss"
+import "./ManageProduct.scss";
 
-interface UserData {
-    id: number;
-    username: string;
-    email: string;
-    password: string;
-}
+
+// interface UserData {
+//     id: number;
+//     username: string;
+//     email: string;
+// }
 
 interface ProductData {
     id: number;
@@ -27,17 +26,17 @@ interface ProductData {
 }
 
 
-function Admin() {
-    const [usersData, setUsersData] = useState<UserData[]>([]);
+
+function ManageProduct() {
+    // const [usersData, setUsersData] = useState<UserData[]>([]);
     const [productsData, setProductsData] = useState<ProductData[]>([]);
     const [error, setError] = useState<string | null>(null);
     const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
-    const [newUserData, setNewUserData] = useState<UserData>({
-        id: 4,
-        username: "",
-        email: "",
-        password: ""
-    });
+    // const [newUserData, setNewUserData] = useState<UserData>({
+    //     id: 4,
+    //     username: "",
+    //     email: "",
+    // });
     const [newProductData, setNewProductData] = useState<ProductData>({
         id: 100,
         name: "",
@@ -53,13 +52,13 @@ function Admin() {
         deleted_at: "2024-05-30T10:09:43Z"
     });
 
-    const [editingUserId, setEditingUserId] = useState<number | null>(null);
+    // const [editingUserId, setEditingUserId] = useState<number | null>(null);
     const [editingProductId, setEditingProductId] = useState<number | null>(null);
 
     useEffect(() => {
         const token = localStorage.getItem('token');
         if (token) {
-            getUsersData(token);
+            // getUsersData(token);
             getProductData(token);
             setIsLoggedIn(true);
         } else {
@@ -67,20 +66,19 @@ function Admin() {
         }
     }, []);
 
-    const getUsersData = async (token: string) => {
-
-        try {
-            const response = await axios.get('https://ecommerce-python.vercel.app/api/v1/users/', {
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
-            });
-            const userData: UserData[] = response.data;
-            setUsersData(userData);
-        } catch (error) {
-            setError('Error fetching user data: ' + error);
-        }
-    };
+    // const getUsersData = async (token: string) => {
+    //     try {
+    //         const response = await axios.get('https://ecommerce-python.vercel.app/api/v1/users/', {
+    //             headers: {
+    //                 'Authorization': `Bearer ${token}`
+    //             }
+    //         });
+    //         const userData: UserData[] = response.data;
+    //         setUsersData(userData);
+    //     } catch (error) {
+    //         setError('Error fetching user data: ' + error);
+    //     }
+    // };
 
     const getProductData = async (token: string) => {
         try {
@@ -90,7 +88,6 @@ function Admin() {
                 }
             });
             const productData: ProductData[] = response.data.data;
-
             setProductsData(productData);
         } catch (error) {
             setError('Error fetching product data: ' + error);
@@ -98,72 +95,70 @@ function Admin() {
     };
 
     // CRUD USER
-    const handleAddUser = async () => {
+    // const handleAddUser = async () => {
+    //     try {
+    //         const token = localStorage.getItem('token');
+    //         if (token) {
+    //             await axios.post('https://ecommerce-python.vercel.app/api/v1/users/', newUserData, {
+    //                 headers: {
+    //                     'Authorization': `Bearer ${token}`
+    //                 }
+    //             });
+    //             getUsersData(token);
+    //             setNewUserData({ id: 4, username: "", email: "" });
+    //         }
+    //     } catch (error) {
+    //         setError('Error adding new user: ' + error);
+    //     }
+    // };
 
-        try {
-            const token = localStorage.getItem('token');
-            if (token) {
-                await axios.post('https://ecommerce-python.vercel.app/api/v1/users/', newUserData, {
-                    headers: {
-                        'Authorization': `Bearer ${token}`
-                    }
-                });
-                getUsersData(token);
-                setNewUserData({ id: 4, username: "", email: "", password: "" });
-            }
-        } catch (error) {
-            setError('Error adding new user: ' + error);
-        }
-    };
+    // const handleEditUser = (userId: number) => {
+    //     const editingUser = usersData.find(user => user.id === userId);
+    //     if (editingUser) {
+    //         setNewUserData(editingUser);
+    //         setEditingUserId(userId);
+    //     }
+    // };
 
-    const handleEditUser = (userId: number) => {
-        const editingUser = usersData.find(user => user.id === userId);
-        if (editingUser) {
-            setNewUserData(editingUser);
-            setEditingUserId(userId);
-        }
-    };
+    // const handleUpdateUser = async () => {
+    //     try {
+    //         const token = localStorage.getItem('token');
+    //         if (token && editingUserId) {
+    //             await axios.put(`https://ecommerce-python.vercel.app/api/v1/users/${editingUserId}`, newUserData, {
+    //                 headers: {
+    //                     'Authorization': `Bearer ${token}`
+    //                 }
+    //             });
+    //             getUsersData(token);
+    //             setNewUserData({ id: 4, username: "", email: "" });
+    //             setEditingUserId(null);
+    //         }
+    //     } catch (error) {
+    //         setError('Error updating user: ' + error);
+    //     }
+    // };
 
-    const handleUpdateUser = async () => {
-        try {
-            const token = localStorage.getItem('token');
-            if (token && editingUserId) {
-                await axios.put(`https://ecommerce-python.vercel.app/api/v1/users/${editingUserId}`, newUserData, {
-                    headers: {
-                        'Authorization': `Bearer ${token}`
-                    }
-                });
-                getUsersData(token);
-                setNewUserData({ id: 4, username: "", email: "", password: "" });
-                setEditingUserId(null);
-            }
-        } catch (error) {
-            setError('Error updating user: ' + error);
-        }
-    };
-
-    const handleDeleteUser = async (userId: number) => {
-        try {
-            const token = localStorage.getItem('token');
-            if (token) {
-                await axios.delete(`https://ecommerce-python.vercel.app/api/v1/users/${userId}`, {
-                    headers: {
-                        'Authorization': `Bearer ${token}`
-                    }
-                });
-                getUsersData(token);
-            }
-        } catch (error) {
-            setError('Error deleting user: ' + error);
-        }
-    };
+    // const handleDeleteUser = async (userId: number) => {
+    //     try {
+    //         const token = localStorage.getItem('token');
+    //         if (token) {
+    //             await axios.delete(`https://ecommerce-python.vercel.app/api/v1/users/${userId}`, {
+    //                 headers: {
+    //                     'Authorization': `Bearer ${token}`
+    //                 }
+    //             });
+    //             getUsersData(token);
+    //         }
+    //     } catch (error) {
+    //         setError('Error deleting user: ' + error);
+    //     }
+    // };
 
 
 
 
     // CRUD PRODUCT
     const handleAddProduct = async () => {
-        console.log(newProductData);
         try {
             const token = localStorage.getItem('token');
             if (token) {
@@ -257,60 +252,45 @@ function Admin() {
 
     return (
         <div className="container-admin">
-
-
-            <h1>User Manage</h1>
-            <div className="container_manage-user">
-                <div className="show-user">
-
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Username</th>
-                                <th>Email</th>
-                                <th>Option</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {usersData.map((user, index) => (
-                                <tr key={index}>
-                                    <td>{user.username}</td>
-                                    <td>{user.email}</td>
-
-                                    <td>
-                                        <button className="update update-user" onClick={() => handleEditUser(user.id)}>Update</button>
-                                        <button className="delete delete-user" onClick={() => handleDeleteUser(user.id)}>Delete</button>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
-                <div className="add-user">
-                    <h2>Add user</h2>
-                    <div>
-                        <label htmlFor="Username">Username</label>
-                        <input type="text" placeholder="Username" value={newUserData.username} onChange={(e) => setNewUserData({ ...newUserData, username: e.target.value })} />
-                        <label htmlFor="Email">Email</label>
-                        <input type="email" placeholder="Email" value={newUserData.email} onChange={(e) => setNewUserData({ ...newUserData, email: e.target.value })} />
-                        <label htmlFor="Password">Password</label>
-                        <input type="password" placeholder="Password" value={newUserData.password} onChange={(e) => setNewUserData({ ...newUserData, password: e.target.value })} />
-
-
-                        <button className="add submit-user" onClick={editingUserId ? handleUpdateUser : handleAddUser}>{editingUserId ? 'Update user' : 'Add user'}</button>
-                    </div>
-                    {error && <p>This password is too short. It must contain at least 8 characters or this password is too common or this password is entirely numeric. *Please Again*</p>}
-                </div>
-
-            </div>
-            {isLoggedIn ? null : (
-                <Link to="/login" className="login_manage-product">
-                    <button>Đăng nhập</button>
-                </Link>
-            )}
-            {error && <p>{error}</p>}
             <h1>Product Manage</h1>
+
+            {/* <div className="Users-Data">
+                <h1>User Data</h1>
+                <div>
+                    <label htmlFor="Username">Username</label>
+                    <input type="text" placeholder="Username" value={newUserData.username} onChange={(e) => setNewUserData({ ...newUserData, username: e.target.value })} />
+                    <label htmlFor="Email">Email</label>
+                    <input type="email" placeholder="Email" value={newUserData.email} onChange={(e) => setNewUserData({ ...newUserData, email: e.target.value })} />
+
+                    <button className="add add-user" onClick={editingUserId ? handleUpdateUser : handleAddUser}>{editingUserId ? 'Update user' : 'Add user'}</button>
+                </div>
+                {error && <p>This password is too short. It must contain at least 8 characters or this password is too common or this password is entirely numeric. *Please Again*</p>}
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Option</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {usersData.map((user, index) => (
+                            <tr key={index}>
+                                <td>{user.username}</td>
+                                <td>{user.email}</td>
+
+                                <td>
+                                    <button className="update update-user" onClick={() => handleEditUser(user.id)}>Update</button>
+                                    <button className="delete delete-user" onClick={() => handleDeleteUser(user.id)}>Delete</button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div> */}
+
             <div className="container_manage-product">
+
                 <div className="show-product">
                     <table>
                         <thead>
@@ -330,7 +310,7 @@ function Admin() {
                                 <tr key={id}>
                                     <td><img src={product.thumbnail} alt="" /></td>
                                     <td>{product.name}</td>
-                                    <td>{product.price}</td>
+                                    <td >{product.price}</td>
                                     <td>{product.amount}</td>
                                     <td>{product.discount}%</td>
                                     <td>{product.unit}</td>
@@ -348,7 +328,7 @@ function Admin() {
 
                 <div className="add-product">
                     <div>
-                        <h2>Add Product</h2>
+                        <h2 >Add Product</h2>
                         <label htmlFor="thumbnail">Thumbnail:</label>
                         <input type="text" id="thumbnail" placeholder="Thumbnail" value={newProductData.thumbnail} onChange={(e) => setNewProductData({ ...newProductData, thumbnail: e.target.value })} />
 
@@ -378,9 +358,15 @@ function Admin() {
                 </div>
             </div>
 
+            {isLoggedIn ? null : (
+                <Link to="/login" className="login_manage-product">
+                    <button>Đăng nhập</button>
+                </Link>
+            )}
+            {error && <p>{error}</p>}
 
         </div>
     );
 }
 
-export default Admin;
+export default ManageProduct;

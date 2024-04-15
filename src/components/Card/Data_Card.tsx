@@ -2,14 +2,14 @@
 const Data_Card = [
   {
     id: 1,
-    thumbnail: "https://bizweb.dktcdn.net/thumb/1024x1024/100/410/538/products/1-77b44157-12e2-4b21-9080-b2406a5fa361-640x640-jpg-v-1702263372.jpg?v=1703577095733",
+    thumbnail: "https://bizweb.dktcdn.net/thumb/1024x1024/100/449/472/products/2af86fae-39f3-42ab-a563-5953cbe696ec.jpg?v=1655566986927",
     name: "Giày Nike",
     price: 21,
     discount: 20,
   },
   {
     id: 2,
-    thumbnail: "https://product.hstatic.net/200000174405/product/gw9092-1_9cb05fa614184a67b9112b69b712c6df_master.jpg",
+    thumbnail: "https://img.lazcdn.com/g/p/d40c98069d9ba260ee57ca665e1d9290.jpg_960x960q80.jpg_.webp",
     name: "Giày Niky",
     price: 22,
     discount: 8,

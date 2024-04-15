@@ -2,6 +2,7 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  animation: moveInLeft ease-in 1s;
 }
 
 .card {
@@ -165,4 +166,21 @@
   border-radius: 50%;
   animation: spin 1s linear infinite;
   /* Thời gian và kiểu của hiệu ứng quay */
+}
+
+
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%);
+  }
+
+  80% {
+    transform: translateX(10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
 }

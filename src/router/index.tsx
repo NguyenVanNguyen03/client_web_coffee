@@ -8,6 +8,7 @@ import Cart from "../components/Cart/Cart";
 import CategoryPage from "../pages/Category/CategoryPage";
 import Login from "../layouts/Auth/Login/Login";
 import Register from "../layouts/Auth/Register/Register";
+import ManageProduct from "../components/ManageProduct/ManageProduct";
 import Admin from "../components/Admin/Admin";
 
 
@@ -36,7 +37,7 @@ const publicRouters = [
   {
     path: screenUrl.HOME,
     component: HomePage,
-    title: "Home Page",
+    title: "Beyond shop",
     isHeader: true,
     isFooter: true,
   },
@@ -62,9 +63,16 @@ const publicRouters = [
     isFooter: false,
   },
   {
+    path: screenUrl.MANAGEPRODUCT,
+    component: ManageProduct,
+    title: "Manage Product",
+    isHeader: false,
+    isFooter: false,
+  },
+  {
     path: screenUrl.ADMIN,
     component: Admin,
-    title: "Manage Product",
+    title: "Admin",
     isHeader: false,
     isFooter: false,
   },

@@ -2,10 +2,83 @@ import { Link, useNavigate } from 'react-router-dom'
 import { formatCurrency } from '../../utils/common'
 import "./Cart.scss"
 import { useShoppingContext } from '../../contexts/ShoppingContext'
+import axios from 'axios';
+import { useState } from 'react';
+
+interface PayData {
+    id: number;
+    user_id: number;
+    receiver_name: string;
+    receiver_phone: string;
+    receiver_address: string;
+    is_ordered: true;
+    is_paid: true;
+    total: number;
+    description: string;
+    created_at: string;
+    updated_at: string;
+    deleted_at: string;
+}
+
 
 const Cart = () => {
     const navigate = useNavigate()
     const { cartItems, totalPrice, increaseQty, decreaseQty, removeCartItem, clearCart } = useShoppingContext()
+    const [error, setError] = useState<string | null>(null);
+    const [newPayData, setNewPayData] = useState<PayData>({
+        id: 2,
+        user_id: 2,
+        receiver_name: "Nguyenn",
+        receiver_phone: "+8432611642",
+        receiver_address: "Da Nang",
+        is_ordered: true,
+        is_paid: true,
+        total: 100,
+        description: "is paid",
+        created_at: "2024-04-14T20:02:54Z",
+        updated_at: "2024-04-14T20:04:06.876735Z",
+        deleted_at: "2024-04-14T20:03:39Z",
+    });
+    // Trong hàm getPayData
+    const getPayData = async (token: string) => {
+        try {
+            const response = await axios.get('https://ecommerce-python.vercel.app/api/v1/orders/', {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            const usePay: PayData[] = response.data;
+
+
+            if (usePay.length > 0) {
+                setNewPayData(usePay[0]);
+            } else {
+                setError('No pay data found');
+            }
+        } catch (error) {
+            setError('Error fetching pay data: ' + error);
+        }
+    };
+
+    // Trong hàm handleAddPay
+    const handleAddPay = async () => {
+        console.log(newPayData);
+
+        try {
+            const token = localStorage.getItem('token');
+            if (token) {
+                await axios.post('https://ecommerce-python.vercel.app/api/v1/orders/', newPayData, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                getPayData(token);
+            }
+        } catch (error) {
+            setError('Error pay: ' + error);
+        }
+    };
+
 
     return (
         <div className="container">
@@ -21,7 +94,7 @@ const Cart = () => {
                                 <th>Quanlity</th>
                                 <th>Sale</th>
                                 <th>Total</th>
-                                <th>Other</th>
+                                <th>Option</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -52,14 +125,17 @@ const Cart = () => {
                     </table>
                     <div className='text-end'><strong>Total: {formatCurrency(totalPrice)}</strong></div>
                     <div className='mt-5'>
-                        <Link to='/products' className='btn btn-sm btn-primary me-2'>Add other</Link>
+                        <Link to='/products' className='btn btn-sm btn-primary me-2'>Add products</Link>
                         <button className='btn btn-sm btn-success' onClick={() => {
+                            handleAddPay()
                             clearCart()
                             navigate('/products')
                         }}>Pay</button>
+                        {error && <p>{error}</p>}
                     </div>
                 </div>
             </div>
+
         </div>
     )
 }

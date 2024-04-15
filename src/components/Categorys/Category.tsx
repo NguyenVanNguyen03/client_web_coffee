@@ -30,6 +30,8 @@ const CategoryCard = () => {
     const [visibleProductCount, setVisibleProductCount] = useState<number>(6);
     const { addCartItem } = useShoppingContext();
     const [nameCategory, setNameCategory] = useState("");
+    const [loadingCategory, setLoadingCategory] = useState<boolean>(false);
+
 
 
 
@@ -69,6 +71,7 @@ const CategoryCard = () => {
 
     const handleShowProduct = async (categoryId: number) => {
         try {
+            setLoadingCategory(true); // Bắt đầu hiển thị loading   
 
             const resToken = await axios.post('https://ecommerce-python.vercel.app/api/v1/jwt/create/', {
                 username: 'Admin',
@@ -87,6 +90,8 @@ const CategoryCard = () => {
             setNameCategory(res.data.data.name);
         } catch (error) {
             console.log(error);
+        } finally {
+            setLoadingCategory(false); // Kết thúc hiển thị loading
         }
     };
 
@@ -110,34 +115,38 @@ const CategoryCard = () => {
                         ))}
                     </div>
                     <h2>{nameCategory}</h2>
-                    <div className="container_product-category">
+                    {loadingCategory ? (
+                        <div className="loading-spinner">Loading...</div>
+                    ) : (
+                        <div className="container_product-category">
+                            {displayedCategory.map((item) => (
+                                <div className="card" key={item.id}>
 
-                        {displayedCategory.map((item) => (
-                            <div className="card" key={item.id}>
-
-                                <div className="card-header">
-                                    <img src={item.thumbnail} alt="ảnh coffee" className="coffee-image" />
-                                    <div className="rating">
-                                        <span className="rating-value">- {item.discount}%</span>
+                                    <div className="card-header">
+                                        <img src={item.thumbnail} alt="ảnh coffee" className="coffee-image" />
+                                        <div className="rating">
+                                            <span className="rating-value">- {item.discount}%</span>
+                                        </div>
                                     </div>
-                                </div>
-                                <div className="card-body">
-                                    <div className="coffee-info">
-                                        <h3 className="coffee-name">{item.name}</h3>
-                                        <p className="coffee-price">{formatCurrency(item.price)}</p>
-                                    </div>
-                                    <div className="content-and-button">
-                                        <p>Amount: {item.amount}</p>
-                                        <div className="button-group-product">
-                                            <button className="cart-button" onClick={() => addCartItem(item)}>
-                                                <FaShoppingCart />
-                                            </button>
+                                    <div className="card-body">
+                                        <div className="coffee-info">
+                                            <h3 className="coffee-name">{item.name}</h3>
+                                            <p className="coffee-price">{formatCurrency(item.price)}</p>
+                                        </div>
+                                        <div className="content-and-button">
+                                            <p>Amount: {item.amount}</p>
+                                            <div className="button-group-product">
+                                                <button className="cart-button" onClick={() => addCartItem(item)}>
+                                                    <FaShoppingCart />
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        ))}
-                    </div>
+                            ))}
+                        </div>
+                    )}
+
                 </>
             )}
 

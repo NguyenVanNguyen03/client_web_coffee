@@ -1,26 +1,34 @@
 import axios from "axios";
 import { useState } from "react";
+import "./Register.scss"
 
 function Register() {
     const [email, setEmail] = useState("");
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
-    const [error, setError] = useState<string | null>(null); // Sử dụng state thực sự cho lỗi
+    const [error, setError] = useState<string | null>(null);
 
     const handleEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
         setEmail(e.target.value);
-    }
+    };
 
     const handleName = (e: React.ChangeEvent<HTMLInputElement>) => {
         setName(e.target.value);
-    }
+    };
 
     const handlePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
         setPassword(e.target.value);
-    }
+    };
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+
+        // Form validation
+        if (!email.trim() || !name.trim() || !password.trim()) {
+            setError('Please enter email, username, and password.');
+            return;
+        }
+
         try {
             const userData = JSON.stringify({
                 email: email,
@@ -41,37 +49,42 @@ function Register() {
                 if (responseData?.non_field_errors && responseData.non_field_errors.length > 0) {
                     setError(responseData.non_field_errors.join('. '));
                 } else {
-                    setError('This password is too short. It must contain at least 8 characters or this password is too common or this password is entirely numeric.');
-
+                    setError('Weak password . Please try again later.');
+                    console.error('Weak password . Please try again later.', error);
                 }
-            } else {
-                setError('An unexpected error occurred. Please try again later.');
-                console.error('An unexpected error occurred:', error);
             }
         }
-    }
+    };
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
+        <div className="container_form-register">
+            <form onSubmit={handleSubmit} className="form-container">
                 <h1>Register</h1>
-                <div className="user-email">
+
+                <div className="form-group">
                     <label htmlFor="email">Email</label>
                     <input type="email" id="email" onChange={handleEmail} value={email} />
                 </div>
-                <div className="user-name">
+                <div className="form-group">
                     <label htmlFor="name">User Name</label>
                     <input type="text" id="name" onChange={handleName} value={name} />
                 </div>
-                <div className="user-password">
+                <div className="form-group">
                     <label htmlFor="password">Password</label>
                     <input type="password" id="password" onChange={handlePassword} value={password} />
                 </div>
+                <div className="checkbox-container">
+
+
+                    <a href="#">Forgot password</a>
+
+                    <a href="/login">Sign-in</a>
+                </div>
                 <button className="btn-register" type="submit">Submit</button>
+                {error && <p className="error-message">{error}</p>}
             </form>
-            {error && <p>{error}</p>} {/* Hiển thị lỗi nếu có */}
         </div>
-    )
+    );
 }
 
 export default Register;

@@ -7,6 +7,21 @@ import { formatCurrency } from "../../../utils/common";
 
 function ModelCart() {
     const { cartItems, totalPrice } = useShoppingContext();
+    const token = localStorage.getItem("token");
+
+    // Kiểm tra nếu không có token, không hiển thị sản phẩm trong giỏ hàng
+    if (!token) {
+        return (
+            <div className='container_model-cart '>
+                <div className="cart-entry">
+                    <h1>Your Cart</h1>
+                    <img src="https://img.lovepik.com/photo/40017/0891.jpg_wh860.jpg" alt="" />
+                    <p>Vui lòng đăng nhập để  đặt hàng.</p>
+                    <button><a href="/login">Login</a></button>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className='container_model-cart'>
@@ -15,20 +30,20 @@ function ModelCart() {
                 <table>
                     <thead>
                         <tr>
-                            <th >Images</th>
-                            <th >Name Product</th>
-                            <th >Price</th>
-                            <th >Quantity</th>
-                            <th className="th-sale" >Sale</th>
-                            <th >Total</th>
-                            <th >Other</th>
+                            <th>Images</th>
+                            <th>Name Product</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th className="th-sale">Sale</th>
+                            <th>Total</th>
+                            <th>Option</th>
                         </tr>
                     </thead>
                     <tbody>
                         {cartItems.map(item => {
                             return (
                                 <BodyModelCart key={item.id} {...item} />
-                            )
+                            );
                         })}
                     </tbody>
                 </table>
@@ -40,7 +55,7 @@ function ModelCart() {
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
 export default ModelCart;

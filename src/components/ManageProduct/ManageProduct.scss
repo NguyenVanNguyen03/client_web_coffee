@@ -2,7 +2,6 @@
     font-family: Arial, sans-serif;
     animation: moveInTop 1s ease;
 
-
     h1 {
         margin: 20px;
         text-align: center;
@@ -15,11 +14,10 @@
         text-align: center;
     }
 
-    .container_manage-user {
+    .container_manage-product {
         display: flex;
-        margin: 0 150px;
 
-        .show-user {
+        .show-product {
             flex: 1;
 
             margin-bottom: 20px;
@@ -30,7 +28,7 @@
             }
         }
 
-        .add-user {
+        .add-product {
             flex: 0.6;
         }
 
@@ -99,7 +97,7 @@
         height: 30px;
         width: 97%;
 
-        .submit-user {
+        .submit-product {
             display: inline-block;
         }
 
@@ -125,6 +123,18 @@
 
     }
 
+    .login_manage-product {
+        display: flex;
+        justify-content: center;
+
+        text-decoration: none;
+
+        button {
+            width: 300px;
+            height: 50px;
+            background-color: red;
+        }
+    }
 
 }
 

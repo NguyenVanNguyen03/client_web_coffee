@@ -18,8 +18,7 @@ function HomePage() {
               Enjoy your <h2>products</h2> <br /> before your activity
             </h1>
             <p>
-              Boost your productivity and build your mood with a glass of products
-              in the morning{" "}
+              Increase your productivity and improve your mood with shoe products added to your cart{" "}
             </p>
             <Link to={"/products"} className="btn-order">
               <button className="button button1">
