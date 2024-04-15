@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import "./Register.scss"
+import { Link } from "react-router-dom";
 
 function Register() {
     const [email, setEmail] = useState("");
@@ -79,7 +80,7 @@ function Register() {
                     <a href="#">Forgot password</a>
 
                     <li>
-                        <Link to="/admin">Admin</Link>
+                        <Link to="/login">Admin</Link>
                     </li>
                 </div>
                 <button className="btn-register" type="submit">Submit</button>
