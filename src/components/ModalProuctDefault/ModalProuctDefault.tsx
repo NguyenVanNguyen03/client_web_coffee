@@ -1,6 +1,6 @@
 import React from "react";
 import "./ModalProuctDefault.scss"
-import { FaShoppingCart, FaTimes } from "react-icons/fa";
+import { FaTimes } from "react-icons/fa";
 import { formatCurrency } from "../../utils/common";
 import { useShoppingContext } from "../../contexts/ShoppingContext";
 
@@ -48,7 +48,7 @@ const Modal: React.FC<ModalProps> = ({ product, closeModal }) => {
                         </div>
                         <div className="button-group-productModal">
                             <button className="cart-buttonModal" onClick={() => addCartItem(product)}>
-                                <FaShoppingCart />
+                                Add Cart
                             </button>
                         </div>
                     </div>
