@@ -4,6 +4,7 @@ import axios from "axios";
 import { formatCurrency } from "../../utils/common";
 import { FaShoppingCart } from "react-icons/fa";
 import { useShoppingContext } from "../../contexts/ShoppingContext";
+import Modal from "../ProductDefault/ModalProuctDefault";
 
 
 type Product = {
@@ -18,7 +19,6 @@ type ProductCategory = {
     price: number;
     discount: number;
     amount: number;
-    contdiscountent: string;
     unit: string
 }
 
@@ -31,7 +31,7 @@ const CategoryCard = () => {
     const { addCartItem } = useShoppingContext();
     const [nameCategory, setNameCategory] = useState("");
     const [loadingCategory, setLoadingCategory] = useState<boolean>(false);
-
+    const [selectedProduct, setSelectedProduct] = useState<ProductCategory | null>(null); // State lưu thông tin sản phẩm được chọn
 
 
 
@@ -95,9 +95,18 @@ const CategoryCard = () => {
         }
     };
 
-
+    const handleProductDefault = (product: ProductCategory) => {
+        setSelectedProduct(product);
+    };
+    // Function để đóng modal
+    const closeModal = () => {
+        setSelectedProduct(null);
+    };
     return (
         <div className="cardsCategory-container">
+            {selectedProduct && (
+                <Modal product={selectedProduct} closeModal={closeModal} />
+            )}
             {loading ? ( // Hiển thị phần tử loading nếu đang tải dữ liệu
                 <div className="loading-spinner">Loading...</div>
             ) : (
@@ -106,7 +115,7 @@ const CategoryCard = () => {
                         {displayedProducts.map((item) => (
                             <div className="card-category" key={item.id} onClick={() => handleShowProduct(item.id)}>
 
-                                <div className="img-category">
+                                <div className="img-category" >
                                     <img src={item.icon_url} alt="" />
                                 </div>
                                 <div className="name-category">{item.name}</div>
@@ -119,10 +128,11 @@ const CategoryCard = () => {
                         <div className="loading-spinner">Loading...</div>
                     ) : (
                         <div className="container_product-category">
+
                             {displayedCategory.map((item) => (
                                 <div className="card" key={item.id}>
 
-                                    <div className="card-header">
+                                    <div className="card-header" onClick={() => handleProductDefault(item)}>
                                         <img src={item.thumbnail} alt="ảnh coffee" className="coffee-image" />
                                         <div className="rating">
                                             <span className="rating-value">- {item.discount}%</span>

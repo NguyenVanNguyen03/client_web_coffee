@@ -4,6 +4,7 @@ const screenUrl = {
   HOME: "/",
   CATEGORY: "/category",
   PRODUCTS: "/products",
+  PRODUCTDEFAULT: "/product-default",
   CART: "/cart",
   ADMIN: "/admin",
   MANAGEPRODUCT: "/manage-product"

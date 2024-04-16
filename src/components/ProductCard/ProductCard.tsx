@@ -5,6 +5,8 @@ import axios from "axios";
 
 import { formatCurrency } from "../../utils/common";
 import { useShoppingContext } from "../../contexts/ShoppingContext";
+// import { Modal } from "react-bootstrap";
+import Modal from "../ProductDefault/ModalProuctDefault";
 
 type Product = {
   id: number;
@@ -13,7 +15,6 @@ type Product = {
   price: number;
   discount: number;
   amount: number;
-  contdiscountent: string;
   unit: string
 }
 
@@ -23,6 +24,8 @@ const ProductCard = () => {
   const [displayedProducts, setDisplayedProducts] = useState<Product[]>([]);
   const [visibleProductCount, setVisibleProductCount] = useState<number>(6);
   const { addCartItem } = useShoppingContext();
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null); // State lưu thông tin sản phẩm được chọn
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -51,19 +54,32 @@ const ProductCard = () => {
     fetchData();
   }, [visibleProductCount]);
 
+
   const handleShowMore = () => {
     setVisibleProductCount(visibleProductCount + 6);
 
   };
 
+  const handleProductDefault = (product: Product) => {
+    setSelectedProduct(product);
+  };
+
+  // Function để đóng modal
+  const closeModal = () => {
+    setSelectedProduct(null);
+  };
+
   return (
     <div className="cardsProduct-container">
+      {selectedProduct && (
+        <Modal product={selectedProduct} closeModal={closeModal} />
+      )}
       {loading ? ( // Hiển thị phần tử loading nếu đang tải dữ liệu
         <div className="loading-spinner">Loading...</div>
       ) : (
         displayedProducts.map((item) => (
           <div className="card" key={item.id}>
-            <div className="card-header">
+            <div className="card-header" onClick={() => handleProductDefault(item)}>
               <img src={item.thumbnail} alt="ảnh coffee" className="coffee-image" />
               <div className="rating">
                 <span className="rating-value">- {item.discount}%</span>

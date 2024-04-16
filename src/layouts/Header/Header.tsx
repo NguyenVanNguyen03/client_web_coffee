@@ -32,10 +32,6 @@ function Header() {
         <li>
           <Link to="/manage-product">Your Product</Link>
         </li>
-
-        <li>
-          <Link to="/admin">Admin</Link>
-        </li>
       </ul>
 
       <div className="search-box">
@@ -45,7 +41,7 @@ function Header() {
 
       <div className="body-cart">
         <Link to="" >
-          <FaCartPlus className="btn-cart" onClick={handleToggleModelCart} style={{ width: "25px", height: "25px" }} />
+          <FaCartPlus className="btn-cart" onClick={handleToggleModelCart} style={{ width: "30px", height: "25px" }} />
         </Link>
         <span className="Qty-Product">{cartQty}</span>
         {isModelCartOpen && <ModelCart />}

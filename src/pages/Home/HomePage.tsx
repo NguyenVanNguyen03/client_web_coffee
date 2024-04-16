@@ -27,7 +27,7 @@ function HomePage() {
               </button>
 
             </Link>
-            <Link to={"/products"}>
+            <Link to={"/category"}>
               <button className="button button2">More Menu</button>
             </Link>
 

@@ -10,7 +10,8 @@ import Login from "../layouts/Auth/Login/Login";
 import Register from "../layouts/Auth/Register/Register";
 import ManageProduct from "../components/ManageProduct/ManageProduct";
 import Admin from "../components/Admin/Admin";
-
+import ProductDefault from "../components/ProductDefault/ModalProuctDefault";
+import { ToastContainer } from 'react-toastify';
 
 interface PageWrapperProps {
   title: string;
@@ -76,6 +77,14 @@ const publicRouters = [
     isHeader: false,
     isFooter: false,
   },
+  {
+    path: screenUrl.PRODUCTDEFAULT,
+    component: ProductDefault,
+    title: "Product Default",
+    isHeader: false,
+    isFooter: false,
+  },
+
 
 ];
 
@@ -94,6 +103,7 @@ function WrapperComponent({
     <div>
       {isHeader && <Header />}
       <Component />
+      <ToastContainer />
       {isFooter && <Footer />}
     </div>
   );
@@ -127,7 +137,7 @@ function AppRouter() {
             element={(
               <WrapperComponent
                 title={route.title}
-                component={route.component}
+                component={route.component as ComponentType}
                 isHeader={route.isHeader}
                 isFooter={route.isFooter}
               />

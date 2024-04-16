@@ -3,19 +3,42 @@ import { FaShoppingCart } from "react-icons/fa";
 import Data_Card from "./Data_Card";
 import { useShoppingContext } from "../../contexts/ShoppingContext";
 import { formatCurrency } from "../../utils/common";
+import { useState } from "react";
+import Modal from "../ProductDefault/ModalProuctDefault";
 
+type Product = {
+  id: number;
+  name: string;
+  thumbnail: string;
+  price: number;
+  discount: number;
+  amount: number;
+  unit: string
 
+}
 
 
 const CoffeeCard = () => {
 
   const { addCartItem } = useShoppingContext()
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null); // State lưu thông tin sản phẩm được chọn
 
+
+  const handleProductDefault = (product: Product) => {
+    setSelectedProduct(product);
+  };
+  // Function để đóng modal
+  const closeModal = () => {
+    setSelectedProduct(null);
+  };
   return (
     <div className="cards-container">
+      {selectedProduct && (
+        <Modal product={selectedProduct} closeModal={closeModal} />
+      )}
       {Data_Card.map((item) => (
         <div className="card" key={item.id}>
-          <div className="card-header">
+          <div className="card-header" onClick={() => handleProductDefault(item)}>
             <img
               src={item.thumbnail}
               alt="Coffee"

@@ -6,6 +6,8 @@ const Data_Card = [
     name: "Giày Nike",
     price: 21,
     discount: 20,
+    amount: 10,
+    unit: "$"
   },
   {
     id: 2,
@@ -13,6 +15,8 @@ const Data_Card = [
     name: "Giày Niky",
     price: 22,
     discount: 8,
+    amount: 10,
+    unit: "$"
   },
   {
     id: 3,
@@ -20,6 +24,8 @@ const Data_Card = [
     name: "Giày Niko",
     price: 23,
     discount: 15,
+    amount: 10,
+    unit: "$"
   },
 ];
 

@@ -64,9 +64,9 @@ function Login() {
 
                         <input type="checkbox" />Remember password
                     </div>
-                    <li>
-                        <Link className="a" to="/register">Sign-up</Link>
-                    </li>
+
+                    <Link className="a" to="/register">Sign-up</Link>
+
                 </div>
                 <button className="btn-login" type="submit">Submit</button>
                 {error && <p className="error-message">{error}</p>}

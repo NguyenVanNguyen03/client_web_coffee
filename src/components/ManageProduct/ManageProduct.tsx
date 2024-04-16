@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./ManageProduct.scss";
+import { toast } from "react-toastify";
 
 
 // interface UserData {
@@ -182,7 +183,7 @@ function ManageProduct() {
                     updated_at: "2024-05-10T10:10:03.575483Z",
                     deleted_at: "2024-05-30T10:09:43Z"
                 });
-
+                toast("Product has been added", { type: "success" })
             }
         } catch (error) {
             setError('Error adding new product: ' + error);
@@ -223,7 +224,7 @@ function ManageProduct() {
                     deleted_at: "2024-05-30T10:09:43Z"
                 });
                 setEditingProductId(null);
-
+                toast("Product has been editing", { type: "success" })
             }
         } catch (error) {
             setError('Error updating product: ' + error);
@@ -242,9 +243,11 @@ function ManageProduct() {
                     }
                 });
                 getProductData(token);
+                toast("Product has been deleted", { type: "warning" })
             }
         } catch (error) {
             setError('Error deleting product: ' + error);
+            toast(`${error}`, { type: "error" })
         }
     };
 
@@ -252,7 +255,15 @@ function ManageProduct() {
 
     return (
         <div className="container-admin">
-            <h1>Product Manage</h1>
+            <div className="title">
+
+                <h1>Product Manage</h1>
+                <Link to={"/admin"}>
+                    <button>
+                        Admin
+                    </button>
+                </Link>
+            </div>
 
             {/* <div className="Users-Data">
                 <h1>User Data</h1>

@@ -4,6 +4,7 @@ import "./Cart.scss"
 import { useShoppingContext } from '../../contexts/ShoppingContext'
 import axios from 'axios';
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 
 interface PayData {
     id: number;
@@ -28,7 +29,7 @@ const Cart = () => {
     const [newPayData, setNewPayData] = useState<PayData>({
         id: 2,
         user_id: 2,
-        receiver_name: "Nguyenn",
+        receiver_name: "NguyenPay",
         receiver_phone: "+8432611642",
         receiver_address: "Da Nang",
         is_ordered: true,
@@ -62,8 +63,6 @@ const Cart = () => {
 
     // Trong hàm handleAddPay
     const handleAddPay = async () => {
-        console.log(newPayData);
-
         try {
             const token = localStorage.getItem('token');
             if (token) {
@@ -73,6 +72,9 @@ const Cart = () => {
                     }
                 });
                 getPayData(token);
+                toast("order has been successfully", { type: "success" })
+                clearCart()
+                navigate('/products')
             }
         } catch (error) {
             setError('Error pay: ' + error);
@@ -128,8 +130,7 @@ const Cart = () => {
                         <Link to='/products' className='btn btn-sm btn-primary me-2'>Add products</Link>
                         <button className='btn btn-sm btn-success' onClick={() => {
                             handleAddPay()
-                            clearCart()
-                            navigate('/products')
+
                         }}>Pay</button>
                         {error && <p>{error}</p>}
                     </div>

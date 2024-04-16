@@ -155,6 +155,8 @@ function Admin() {
             }
         } catch (error) {
             setError('Error deleting user: ' + error);
+            // toast(`${error}`, { type: "error" })
+
         }
     };
 
@@ -250,6 +252,7 @@ function Admin() {
             }
         } catch (error) {
             setError('Error deleting product: ' + error);
+
         }
     };
 

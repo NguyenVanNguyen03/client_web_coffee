@@ -1,5 +1,5 @@
 import { ReactNode, createContext, useContext, useState, useEffect } from 'react'
-
+import { toast } from 'react-toastify'
 type ShoppingContextProviderProps = {
     children: ReactNode
 }
@@ -92,7 +92,7 @@ export const ShoppingContextProvider = ({ children }: ShoppingContextProviderPro
     }
 
     const addCartItem = (product: ProductItem) => {
-
+        toast("Order has been successfully", { type: "success" })
         if (product) {
             const currentCartItem = cartItems.find(item => item.id === product.id)
             if (currentCartItem) {
@@ -104,6 +104,7 @@ export const ShoppingContextProvider = ({ children }: ShoppingContextProviderPro
                     }
                 })
                 setCartItems(newItems)
+
             } else {
                 const newItem = { ...product, qty: 1 }
                 setCartItems([...cartItems, newItem])
@@ -117,6 +118,7 @@ export const ShoppingContextProvider = ({ children }: ShoppingContextProviderPro
         const newItems = [...cartItems]
         newItems.splice(currentCartItemIndex, 1)
         setCartItems(newItems)
+        toast("Order has been delete", { type: "warning" })
     }
 
     const clearCart = () => {
