@@ -10,7 +10,7 @@ import Login from "../layouts/Auth/Login/Login";
 import Register from "../layouts/Auth/Register/Register";
 import ManageProduct from "../components/ManageProduct/ManageProduct";
 import Admin from "../components/Admin/Admin";
-import ProductDefault from "../components/ProductDefault/ModalProuctDefault";
+import ProductDefault from "../components/ModalProuctDefault/ModalProuctDefault";
 import { ToastContainer } from 'react-toastify';
 
 interface PageWrapperProps {

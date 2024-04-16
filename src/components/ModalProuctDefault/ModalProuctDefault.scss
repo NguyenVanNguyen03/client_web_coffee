@@ -1,0 +1,136 @@
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    width: 100%;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
+
+    /* Cho phép cuộn nếu nội dung quá dài */
+    /* Các thuộc tính CSS khác */
+    .close {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        cursor: pointer;
+        font-size: 20px;
+        color: #333;
+
+        .i {
+            color: red;
+        }
+
+        .i {
+            -webkit-transition: -webkit-transform .5s ease-in-out;
+            transition: transform .5s ease-in-out;
+        }
+
+        /* Màu của icon đóng */
+        .i:hover {
+            -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+    }
+
+    .cardModal {
+        margin-bottom: 20px;
+        display: flex;
+
+        .card-headerModal {
+            display: flex;
+            align-items: center;
+            flex: 1;
+            margin-right: 50px;
+
+            img {
+                width: 300px;
+                height: 300px;
+                object-fit: cover;
+            }
+        }
+
+        .card-bodyModal {
+            flex: 3;
+            font-size: 18px;
+            width: 450px;
+
+            .coffee-imageModal {
+                width: 100px;
+                /* Kích thước ảnh sản phẩm */
+                height: auto;
+                margin-right: 10px;
+            }
+
+            .coffee-nameModal {
+                font-size: 30px;
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            .ratingModal {
+                display: flex;
+
+                p {
+                    margin: 0 25px;
+                }
+            }
+
+            .price {
+                width: 70%;
+                border-top: 2px solid rgb(252, 181, 50);
+                border-bottom: 2px solid rgb(252, 181, 50);
+                margin-top: 30px;
+                color: rgb(255, 145, 0);
+
+                p {
+                    margin: 10px 35px;
+                    font-size: 30px;
+                }
+            }
+
+            .content {
+                p {
+                    margin: 30px 10px;
+                }
+            }
+
+            .cart-buttonModal {
+                width: 50%;
+                background-color: rgb(255, 145, 0);
+                /* Màu của nút giỏ hàng */
+                color: white;
+                border: none;
+                padding: 8px 12px;
+                border-radius: 4px;
+                cursor: pointer;
+                margin: 0 20px;
+            }
+
+            .cart-buttonModal:hover {
+                background-color: rgb(255, 194, 82);
+                /* Màu của nút khi di chuột vào */
+            }
+        }
+
+    }
+
+
+
+}

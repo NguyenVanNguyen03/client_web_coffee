@@ -4,7 +4,7 @@ import axios from "axios";
 import { formatCurrency } from "../../utils/common";
 import { FaShoppingCart } from "react-icons/fa";
 import { useShoppingContext } from "../../contexts/ShoppingContext";
-import Modal from "../ProductDefault/ModalProuctDefault";
+import Modal from "../ModalProuctDefault/ModalProuctDefault";
 
 
 type Product = {

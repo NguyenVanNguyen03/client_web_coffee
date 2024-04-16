@@ -66,7 +66,7 @@ const Cart = () => {
         try {
             const token = localStorage.getItem('token');
             if (token) {
-                await axios.post('https://ecommerce-python.vercel.app/api/v1/orders/', newPayData, {
+                await axios.post('http://127.0.0.1:8000/api/v1/orders/', newPayData, {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }

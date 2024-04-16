@@ -4,7 +4,7 @@ import Data_Card from "./Data_Card";
 import { useShoppingContext } from "../../contexts/ShoppingContext";
 import { formatCurrency } from "../../utils/common";
 import { useState } from "react";
-import Modal from "../ProductDefault/ModalProuctDefault";
+import Modal from "../ModalProuctDefault/ModalProuctDefault";
 
 type Product = {
   id: number;

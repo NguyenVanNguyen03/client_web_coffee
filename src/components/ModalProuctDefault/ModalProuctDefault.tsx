@@ -34,21 +34,22 @@ const Modal: React.FC<ModalProps> = ({ product, closeModal }) => {
 
 
                     <div className="card-bodyModal">
+                        <h3 className="coffee-nameModal">{product.name}</h3>
                         <div className="ratingModal">
-                            <span className="rating-valueModal">- {product.discount}%</span>
-                        </div>
-                        <div className="coffee-infoModal">
-                            <h3 className="coffee-nameModal">{product.name}</h3>
-                            <p className="coffee-priceModal">{formatCurrency(product.price)}</p>
-                        </div>
-                        <div className="content-and-buttonModal">
+                            <p className="rating-valueModal">Discount: -{product.discount}%</p>
 
                             <p>Amount: {product.amount}</p>
-                            <div className="button-group-productModal">
-                                <button className="cart-buttonModal" onClick={() => addCartItem(product)}>
-                                    <FaShoppingCart />
-                                </button>
-                            </div>
+                        </div>
+                        <div className="price">
+                            <p className="coffee-priceModal">Price: {formatCurrency(product.price)}</p>
+                        </div>
+                        <div className="content">
+                            <p>We believe that each product is not just an item but also an experience, a story. With dedication and passion, we continuously strive to bring you the most unique, aesthetically pleasing, and high-quality products.</p>
+                        </div>
+                        <div className="button-group-productModal">
+                            <button className="cart-buttonModal" onClick={() => addCartItem(product)}>
+                                <FaShoppingCart />
+                            </button>
                         </div>
                     </div>
                 </div>
