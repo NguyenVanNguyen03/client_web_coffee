@@ -12,8 +12,8 @@ interface PayData {
     receiver_name: string;
     receiver_phone: string;
     receiver_address: string;
-    is_ordered: true;
-    is_paid: true;
+    is_ordered: boolean;
+    is_paid: boolean;
     total: number;
     description: string;
     created_at: string;
@@ -29,37 +29,37 @@ const Cart = () => {
     const [newPayData, setNewPayData] = useState<PayData>({
         id: 2,
         user_id: 2,
-        receiver_name: "NguyenPay",
+        receiver_name: "Nguyen",
         receiver_phone: "+8432611642",
         receiver_address: "Da Nang",
         is_ordered: true,
         is_paid: true,
-        total: 100,
+        total: totalPrice,
         description: "is paid",
         created_at: "2024-04-14T20:02:54Z",
         updated_at: "2024-04-14T20:04:06.876735Z",
         deleted_at: "2024-04-14T20:03:39Z",
     });
     // Trong hàm getPayData
-    const getPayData = async (token: string) => {
-        try {
-            const response = await axios.get('https://ecommerce-python.vercel.app/api/v1/orders/', {
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
-            });
-            const usePay: PayData[] = response.data;
+    // const getPayData = async (token: string) => {
+    //     try {
+    //         const response = await axios.get('https://ecommerce-python.vercel.app/api/v1/orders/', {
+    //             headers: {
+    //                 'Authorization': `Bearer ${token}`
+    //             }
+    //         });
+    //         const usePay: PayData[] = response.data;
 
 
-            if (usePay.length > 0) {
-                setNewPayData(usePay[0]);
-            } else {
-                setError('No pay data found');
-            }
-        } catch (error) {
-            setError('Error fetching pay data: ' + error);
-        }
-    };
+    //         if (usePay.length > 0) {
+    //             setNewPayData(usePay[0]);
+    //         } else {
+    //             setError('No pay data found');
+    //         }
+    //     } catch (error) {
+    //         setError('Error fetching pay data: ' + error);
+    //     }
+    // };
 
     // Trong hàm handleAddPay
     const handleAddPay = async () => {
@@ -71,10 +71,10 @@ const Cart = () => {
                         'Authorization': `Bearer ${token}`
                     }
                 });
-                getPayData(token);
-                toast("order has been successfully", { type: "success" })
+                setNewPayData(newPayData);
                 clearCart()
                 navigate('/products')
+                toast("Pay has been successfully", { type: "success" })
             }
         } catch (error) {
             setError('Error pay: ' + error);

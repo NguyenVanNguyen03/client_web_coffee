@@ -1,5 +1,5 @@
 import "./Header.scss";
-import logo from "../../assets/images/logo.svg";
+import logo from "../../assets/images/logo_ga.jpeg";
 import { CiSearch } from "react-icons/ci";
 import { FaCartPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
