@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import "./Register.scss"
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function Register() {
     const [email, setEmail] = useState("");
@@ -44,6 +45,7 @@ function Register() {
             });
             console.log('Registration successful:', response.data);
             window.location.href = "/";
+            toast("Register success", { type: "success" })
         } catch (error) {
             if (axios.isAxiosError(error)) {
                 const responseData = error.response?.data;

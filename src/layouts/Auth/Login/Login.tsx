@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import "./Login.scss";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function Login() {
     const [name, setName] = useState("");
@@ -36,10 +37,11 @@ function Login() {
                     'Content-Type': 'application/json'
                 }
             });
+
             const token = response.data.access;
-            console.log("Logged in successfully");
             localStorage.setItem('token', token);
             window.location.href = "/";
+            toast("Register success", { type: "success" })
         } catch (error) {
             setError('Invalid credentials. Please try again.');
             console.error('Error submitting registration:', error);

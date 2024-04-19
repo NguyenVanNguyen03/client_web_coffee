@@ -250,7 +250,10 @@ function ManageProduct() {
             toast(`${error}`, { type: "error" })
         }
     };
-
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        window.location.href = "/";
+    };
 
 
     return (
@@ -259,11 +262,15 @@ function ManageProduct() {
 
                 <h1>Product Manage</h1>
                 <Link to={"/admin"}>
-                    <button>
+                    <button className="admin">
                         Admin
                     </button>
                 </Link>
+                <button className="logout" onClick={handleLogout}>
+                    Logout
+                </button>
             </div>
+
 
             {/* <div className="Users-Data">
                 <h1>User Data</h1>
@@ -301,8 +308,8 @@ function ManageProduct() {
             </div> */}
 
             <div className="container_manage-product">
-
                 <div className="show-product">
+
                     <table>
                         <thead>
                             <tr>
