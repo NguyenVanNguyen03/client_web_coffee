@@ -366,7 +366,7 @@ function ManageProduct() {
                         <input type="text" id="unit" placeholder="Unit" value={newProductData.unit} onChange={(e) => setNewProductData({ ...newProductData, unit: e.target.value })} />
 
                         <label htmlFor="categoryId">Category:</label>
-                        <p>Note: (1: Áo dài, 2: Quần dài, 3: Công nghệ, 4: Giày, 5: Đồng hồ)</p>
+                        <p>Note: (1: Áo thun, 2: Quần dài, 3: Công nghệ, 4: Giày, 5: Đồng hồ)</p>
                         <input type="text" id="categoryId" placeholder="Category ID" value={newProductData.category_id} onChange={(e) => setNewProductData({ ...newProductData, category_id: parseInt(e.target.value) })} />
 
 

@@ -78,6 +78,7 @@ const Cart = () => {
             }
         } catch (error) {
             setError('Error pay: ' + error);
+            toast("You don't have enough money to pay", { type: "error" })
         }
     };
 
